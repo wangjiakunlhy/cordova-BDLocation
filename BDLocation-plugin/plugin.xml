@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="BDLocation-plugin" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>BDDWplugin</name>
+    <js-module name="BDDWplugin" src="www/BDDWplugin.js">
+        <clobbers target="cordova.plugins.BDDWplugin" />
+    </js-module>
+
+    <platform name="android">
+
+        <source-file src="src/android/BDDWPlugin.java" target-dir="src/com/wang"></source-file>
+        <source-file src="src/android/MyLocationListener.java" target-dir="src/com/wang"></source-file>
+
+        <source-file src="src/lib/BaiduLBS_Android.jar" target-dir="libs"></source-file>
+        <source-file src="src/lib/arm64-v8a/liblocSDK7a.so" target-dir="libs/arm64-v8a"></source-file>
+        <source-file src="src/lib/armeabi/liblocSDK7a.so" target-dir="libs/armeabi"></source-file>
+        <source-file src="src/lib/armeabi-v7a/liblocSDK7a.so" target-dir="libs/armeabi-v7a"></source-file>
+        <source-file src="src/lib/x86/liblocSDK7a.so" target-dir="libs/x86"></source-file>
+        <source-file src="src/lib/x86_64/liblocSDK7a.so" target-dir="libs/x86_64"></source-file>
+		
+		 <source-file src="src/lib/BaiduLBS_Android.jar" target-dir="jniLibs"></source-file>
+        <source-file src="src/lib/arm64-v8a/liblocSDK7a.so" target-dir="jniLibs/arm64-v8a"></source-file>
+        <source-file src="src/lib/armeabi/liblocSDK7a.so" target-dir="jniLibs/armeabi"></source-file>
+        <source-file src="src/lib/armeabi-v7a/liblocSDK7a.so" target-dir="jniLibs/armeabi-v7a"></source-file>
+        <source-file src="src/lib/x86/liblocSDK7a.so" target-dir="jniLibs/x86"></source-file>
+        <source-file src="src/lib/x86_64/liblocSDK7a.so" target-dir="jniLibs/x86_64"></source-file>
+
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="BDDWplugin">
+                <param name="android-package" value="com.wang.BDDWPlugin" />
+            </feature>
+        </config-file>
+
+        <config-file parent="/*" target="AndroidManifest.xml">
+            <!-- 这个权限用于进行网络定位-->
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml">
+            <!-- 这个权限用于访问GPS定位-->
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml">
+            <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位-->
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml">
+            <!-- 获取运营商信息，用于支持提供运营商信息相关的接口-->
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml">
+            <!-- 用于读取手机当前的状态-->
+            <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml">
+            <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
+            <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml">
+            <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据-->
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml">
+            <!-- 访问网络，网络定位需要上网-->
+            <uses-permission android:name="android.permission.INTERNET" />
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml">
+            <!-- SD卡读取权限，用户写入离线定位数据-->
+            <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"></uses-permission>
+        </config-file>
+
+        <config-file parent="/manifest/application" target="AndroidManifest.xml">
+            <meta-data
+                android:name="com.baidu.lbsapi.API_KEY"
+                android:value="NhGiNI29ESWNtqTXIDhMXcVWIqAsnvki" />
+        </config-file>
+        <config-file parent="/manifest/application" target="AndroidManifest.xml">
+            <service
+                android:name="com.baidu.location.f"
+                android:enabled="true"
+                android:process=":remote"></service>
+        </config-file>
+
+    </platform>
+</plugin>
